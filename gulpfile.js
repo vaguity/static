@@ -1,4 +1,6 @@
+// ------------------------------------
 // Load plugins
+// ------------------------------------
 var gulp = require('gulp'),
 	plugins = require('gulp-load-plugins')({ camelize: true }),
 	mainBowerFiles = require('main-bower-files'),
@@ -10,7 +12,12 @@ function handleError(err) {
 	this.emit('end');
 }
 
-// Styles
+
+// ------------------------------------
+// Tasks
+// ------------------------------------
+
+// CSSComb
 gulp.task('comb', function() {
 	return gulp.src('src/scss/**/*.scss')
 		.pipe(plugins.plumber())
@@ -18,6 +25,7 @@ gulp.task('comb', function() {
         .pipe(gulp.dest('src/scss'));
 });
 
+// Compass
 gulp.task('compass', function() {
 	return gulp.src('src/scss/**/*.scss')
 		.pipe(plugins.plumber())
@@ -40,19 +48,13 @@ gulp.task('scripts', function() {
 		.pipe(plugins.jshint('.jshintrc'))
 		.pipe(plugins.jshint.reporter('default'))
 		.pipe(plugins.concat('script.js'))
-		// .pipe(gulp.dest('js'))
 		.pipe(plugins.rename({ suffix: '.min' }))
 		.pipe(plugins.uglify())
 		.pipe(gulp.dest('dist/js'))
 		.pipe(plugins.notify({ message: 'Scripts task complete' }));
 });
 
-// Watch task
-gulp.task('watch', function() {
-	gulp.watch('src/scss/**/*.scss', ['styles']);
-	gulp.watch('src/js/**/*.js', ['scripts']);
-});
-
+// Dependencies
 gulp.task('clean:dependencies', function() {
 	del(['src/lib/*']);
 });
@@ -61,6 +63,17 @@ gulp.task('dependencies', function() {
 	return gulp.src(mainBowerFiles(), { base: 'bower_components' })
 		.pipe(gulp.dest('src/lib'));
 });
+
+// Watch
+gulp.task('watch', function() {
+	gulp.watch('src/scss/**/*.scss', ['styles']);
+	gulp.watch('src/js/**/*.js', ['scripts']);
+});
+
+
+// ------------------------------------
+// Aliases and bundled tasks
+// ------------------------------------
 
 // Styles task
 gulp.task('styles', ['compass']);

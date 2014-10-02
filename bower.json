@@ -20,6 +20,9 @@
   "overrides": {
     "html5-boilerplate": {
       "main": "css/main.css"
+    },
+    "modernizr": {
+      "main": "modernizr.js"
     }
   }
 }
