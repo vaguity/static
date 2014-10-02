@@ -4,7 +4,8 @@
 var gulp = require('gulp'),
 	plugins = require('gulp-load-plugins')({ camelize: true }),
 	mainBowerFiles = require('main-bower-files'),
-	del = require('del');
+	del = require('del'),
+	merge = require('merge-stream');
 
 // Establish error handling
 function handleError(err) {
@@ -54,14 +55,35 @@ gulp.task('scripts', function() {
 		.pipe(plugins.notify({ message: 'Scripts task complete' }));
 });
 
+gulp.task('plugins', function() {
+	return gulp.src(['src/lib/**/.js'])
+
+});
+
 // Dependencies
 gulp.task('clean:dependencies', function() {
 	del(['src/lib/*']);
 });
 
-gulp.task('dependencies', function() {
+gulp.task('rebuild:dependencies', function() {
 	return gulp.src(mainBowerFiles(), { base: 'bower_components' })
 		.pipe(gulp.dest('src/lib'));
+});
+
+gulp.task('process:dependencies', function() {
+	var html5bp = gulp.src('src/lib/html5-boilerplate/css/main.css')
+		.pipe(plugins.rename('_html5bp.scss'))
+		.pipe(gulp.dest('src/scss/partials'));
+	var normalize = gulp.src('src/lib/normalize-scss/_normalize.scss')
+		.pipe(gulp.dest('src/scss/partials'));
+	var jquery = gulp.src('src/lib/jquery/dist/jquery.js')
+		.pipe(gulp.dest('src/js/lib'));
+	var modernizr = gulp.src('src/lib/modernizr/modernizr.js')
+		.pipe(gulp.dest('src/js/lib'));
+	var jqueryui = gulp.src('src/lib/jquery-ui/jquery-ui.js')
+		.pipe(gulp.dest('src/js/lib'));
+
+	return merge(html5bp, normalize, jquery, modernizr, jqueryui);
 });
 
 // Watch
@@ -82,7 +104,7 @@ gulp.task('styles', ['compass']);
 gulp.task('build', ['comb', 'styles', 'scripts']);
 
 // Rebuild task
-gulp.task('rebuild', ['clean:dependencies', 'dependencies']);
+gulp.task('rebuild', ['clean:dependencies', 'rebuild:dependencies', 'process:dependencies']);
 
 // Default task
 gulp.task('default', ['comb', 'styles', 'scripts', 'watch']);
