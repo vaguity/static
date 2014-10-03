@@ -11,7 +11,7 @@ This repo:
 
 ### The Ruby gems
 
-_Compass, Susy and Breakpoint_
+_Compass, Susy, Breakpoint_
 
 `gem install bundler`
 `bundle install`
@@ -19,15 +19,14 @@ _Compass, Susy and Breakpoint_
 
 ### The Node packages
 
-_Gulp, and scripts in support of Gulp_
+_Gulp and packages in support of Gulp_
 
 `npm install`
 
 
 ### The Bower components
 
-_jQuery, Modernizr, jQuery UI_
-_Normalize, HTML5 Boilerplate, Bootstrap_
+_jQuery, Modernizr, jQuery UI, Normalize, HTML5 Boilerplate, Bootstrap_
 
 `bower install`
 
