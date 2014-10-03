@@ -7,10 +7,9 @@ var gulp = require('gulp'),
 	del = require('del'),
 	merge = require('merge-stream');
 
-// Establish error handling
+// Error handling
 function handleError(err) {
 	console.log(err.toString());
-	this.emit('end');
 }
 
 
@@ -18,7 +17,7 @@ function handleError(err) {
 // Tasks
 // ------------------------------------
 
-// CSSComb
+// CSScomb
 gulp.task('comb', function() {
 	return gulp.src('src/scss/**/*.scss')
 		.pipe(plugins.plumber())
@@ -31,15 +30,18 @@ gulp.task('compass', function() {
 	return gulp.src('src/scss/**/*.scss')
 		.pipe(plugins.plumber())
 		.pipe(plugins.compass({
-		config_file: 'config.rb',
-		css: 'css',
-		sass: 'scss',
-		require: ['susy', 'breakpoint'],
+			// config_file: 'config.rb',
+			css: 'dist/assets/css',
+			sass: 'src/scss',
+			require: ['susy', 'breakpoint'],
+			// style: 'compressed',
+			comments: false,
+			logging: false
 		}))
 		.on('error', function(err) {
-			handleError
-			this.emit('end')
-		});
+			handleError;
+		})
+		.pipe(gulp.dest('dist/assets/css'));
 });
 
 // Scripts
@@ -51,32 +53,34 @@ gulp.task('scripts', function() {
 		.pipe(plugins.concat('script.js'))
 		.pipe(plugins.rename({ suffix: '.min' }))
 		.pipe(plugins.uglify())
-		.pipe(gulp.dest('dist/js'))
-		.pipe(plugins.notify({ message: 'Scripts task complete' }));
+		.pipe(gulp.dest('dist/assets/js'))
 });
 
 gulp.task('plugins', function() {
-	return gulp.src(['src/lib/**/.js'])
-
+	return gulp.src(['src/js/lib/**/*.js'])
+		.pipe(plugins.plumber())
+		.pipe(plugins.rename({ suffix: '.min' }))
+		.pipe(plugins.uglify())
+		.pipe(gulp.dest('dist/assets/js/lib'));
 });
 
 // Dependencies
-gulp.task('clean:dependencies', function() {
-	del(['src/lib/*']);
+gulp.task('clean:dependencies', function(callback) {
+	del(['src/lib/*'], callback);
 });
 
-gulp.task('rebuild:dependencies', function() {
+gulp.task('rebuild:dependencies', ['clean:dependencies'], function() {
 	return gulp.src(mainBowerFiles(), { base: 'bower_components' })
 		.pipe(gulp.dest('src/lib'));
 });
 
-gulp.task('process:dependencies', function() {
+gulp.task('process:dependencies', ['clean:dependencies', 'rebuild:dependencies'], function() {
 	var html5bp = gulp.src('src/lib/html5-boilerplate/css/main.css')
 		.pipe(plugins.rename('_html5bp.scss'))
 		.pipe(gulp.dest('src/scss/partials'));
 	var normalize = gulp.src('src/lib/normalize-scss/_normalize.scss')
 		.pipe(gulp.dest('src/scss/partials'));
-	var jquery = gulp.src('src/lib/jquery/dist/jquery.js')
+	var jquery = gulp.src('src/lib/jquery/dist/assets/jquery.js')
 		.pipe(gulp.dest('src/js/lib'));
 	var modernizr = gulp.src('src/lib/modernizr/modernizr.js')
 		.pipe(gulp.dest('src/js/lib'));
@@ -101,10 +105,10 @@ gulp.task('watch', function() {
 gulp.task('styles', ['compass']);
 
 // Build task
-gulp.task('build', ['comb', 'styles', 'scripts']);
+gulp.task('build', ['comb', 'styles', 'plugins', 'scripts']);
 
 // Rebuild task
-gulp.task('rebuild', ['clean:dependencies', 'rebuild:dependencies', 'process:dependencies']);
+gulp.task('rebuild', ['process:dependencies', 'comb', 'styles', 'plugins', 'scripts']);
 
 // Default task
-gulp.task('default', ['comb', 'styles', 'scripts', 'watch']);
+gulp.task('default', ['comb', 'styles', 'plugins', 'scripts', 'watch']);
