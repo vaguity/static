@@ -86,8 +86,10 @@ gulp.task('process:dependencies', ['clean:dependencies', 'rebuild:dependencies']
 		.pipe(gulp.dest('src/js/lib'));
 	var jqueryui = gulp.src('src/lib/jquery-ui/jquery-ui.js')
 		.pipe(gulp.dest('src/js/lib'));
+	var enquire = gulp.src('src/lib/enquire/dist/enquire.js')
+		.pipe(gulp.dest('src/js/lib'));
 
-	return merge(html5bp, normalize, jquery, modernizr, jqueryui);
+	return merge(html5bp, normalize, jquery, modernizr, jqueryui, enquire);
 });
 
 // Watch
@@ -108,7 +110,7 @@ gulp.task('styles', ['compass']);
 gulp.task('build', ['comb', 'styles', 'plugins', 'scripts']);
 
 // Rebuild task
-gulp.task('rebuild', ['process:dependencies', 'comb', 'styles', 'plugins', 'scripts']);
+gulp.task('rebuild', ['process:dependencies']);
 
 // Default task
 gulp.task('default', ['comb', 'styles', 'plugins', 'scripts', 'watch']);
