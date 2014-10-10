@@ -10,8 +10,8 @@ var gulp = require('gulp'),
 // Error handling
 function handleError(err) {
 	console.log(err.toString());
+	this.emit('end');
 }
-
 
 // ------------------------------------
 // Tasks
@@ -38,9 +38,7 @@ gulp.task('compass', function() {
 			comments: false,
 			logging: false
 		}))
-		.on('error', function(err) {
-			handleError;
-		})
+		.on('error', handleError)
 		.pipe(gulp.dest('dist/assets/css'));
 });
 
