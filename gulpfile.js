@@ -51,6 +51,7 @@ gulp.task('scripts', function() {
 		.pipe(plugins.concat('script.js'))
 		.pipe(plugins.rename({ suffix: '.min' }))
 		.pipe(plugins.uglify())
+		.on('error', handleError)
 		.pipe(gulp.dest('dist/assets/js'))
 });
 
@@ -59,6 +60,7 @@ gulp.task('plugins', function() {
 		.pipe(plugins.plumber())
 		.pipe(plugins.rename({ suffix: '.min' }))
 		.pipe(plugins.uglify())
+		.on('error', handleError)
 		.pipe(gulp.dest('dist/assets/js/lib'));
 });
 
