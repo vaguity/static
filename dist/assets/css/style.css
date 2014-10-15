@@ -38,18 +38,7 @@ body {
  * Correct `block` display not defined for `details` or `summary` in IE 10/11 and Firefox.
  * Correct `block` display not defined for `main` in IE 11.
  */
-article,
-aside,
-details,
-figcaption,
-figure,
-footer,
-header,
-hgroup,
-main,
-nav,
-section,
-summary {
+article, aside, details, figcaption, figure, footer, header, hgroup, main, nav, section, summary {
   display: block;
 }
 
@@ -57,10 +46,7 @@ summary {
  * 1. Correct `inline-block` display not defined in IE 6/7/8/9 and Firefox 3.
  * 2. Normalize vertical alignment of `progress` in Chrome, Firefox, and Opera.
  */
-audio,
-canvas,
-progress,
-video {
+audio, canvas, progress, video {
   display: inline-block;
   /* 1 */
   vertical-align: baseline;
@@ -80,8 +66,7 @@ audio:not([controls]) {
  * Address `[hidden]` styling not present in IE 8/9/10.
  * Hide the `template` element in IE 8/9/11, Safari, and Firefox < 22.
  */
-[hidden],
-template {
+[hidden], template {
   display: none;
 }
 
@@ -113,8 +98,7 @@ abbr[title] {
 /**
  * Address style set to `bolder` in Firefox 4+, Safari, and Chrome.
  */
-b,
-strong {
+b, strong {
   font-weight: bold;
 }
 
@@ -130,8 +114,8 @@ dfn {
  * contexts in Firefox 4+, Safari, and Chrome.
  */
 h1 {
+  margin: .67em 0;
   font-size: 2em;
-  margin: 0.67em 0;
 }
 
 /**
@@ -152,20 +136,19 @@ small {
 /**
  * Prevent `sub` and `sup` affecting `line-height` in all browsers.
  */
-sub,
-sup {
-  font-size: 75%;
-  line-height: 0;
+sub, sup {
   position: relative;
   vertical-align: baseline;
+  font-size: 75%;
+  line-height: 0;
 }
 
 sup {
-  top: -0.5em;
+  top: -.5em;
 }
 
 sub {
-  bottom: -0.25em;
+  bottom: -.25em;
 }
 
 /* Embedded content
@@ -214,12 +197,9 @@ pre {
  * Address odd `em`-unit font size rendering in all browsers.
  * Correct font family set oddly in IE 6, Safari 4/5, and Chrome.
  */
-code,
-kbd,
-pre,
-samp {
-  font-family: monospace, monospace;
+code, kbd, pre, samp {
   font-size: 1em;
+  font-family: monospace, monospace;
 }
 
 /* Forms
@@ -235,17 +215,13 @@ samp {
  * 3. Address margins set differently in Firefox 4+, Safari, and Chrome.
  * 4. Improves appearance and consistency in all browsers.
  */
-button,
-input,
-optgroup,
-select,
-textarea {
+button, input, optgroup, select, textarea {
+  margin: 0;
+  /* 3 */
   color: inherit;
   /* 1 */
   font: inherit;
   /* 2 */
-  margin: 0;
-  /* 3 */
 }
 
 /**
@@ -261,8 +237,7 @@ button {
  * Correct `button` style inheritance in Firefox, IE 8/9/10/11, and Opera.
  * Correct `select` style inheritance in Firefox.
  */
-button,
-select {
+button, select {
   text-transform: none;
 }
 
@@ -275,31 +250,27 @@ select {
  * 4. Removes inner spacing in IE 7 without affecting normal text inputs.
  *  Known issue: inner spacing remains in IE 6.
  */
-button,
-html input[type="button"],
-input[type="reset"],
-input[type="submit"] {
-  -webkit-appearance: button;
-  /* 2 */
+button, html input[type='button'],
+input[type='reset'], input[type='submit'] {
   cursor: pointer;
   /* 3 */
+  -webkit-appearance: button;
+  /* 2 */
 }
 
 /**
  * Re-set default cursor for disabled elements.
  */
-button[disabled],
-html input[disabled] {
+button[disabled], html input[disabled] {
   cursor: default;
 }
 
 /**
  * Remove inner padding and border in Firefox 4+.
  */
-button::-moz-focus-inner,
-input::-moz-focus-inner {
-  border: 0;
+button::-moz-focus-inner, input::-moz-focus-inner {
   padding: 0;
+  border: 0;
 }
 
 /**
@@ -315,8 +286,7 @@ input {
  * 2. Remove excess padding in IE 8/9/10.
  *  Known issue: excess padding remains in IE 6.
  */
-input[type="checkbox"],
-input[type="radio"] {
+input[type='checkbox'], input[type='radio'] {
   box-sizing: border-box;
   /* 1 */
   padding: 0;
@@ -328,8 +298,7 @@ input[type="radio"] {
  * `font-size` values of the `input`, it causes the cursor style of the
  * decrement button to change from `default` to `text`.
  */
-input[type="number"]::-webkit-inner-spin-button,
-input[type="number"]::-webkit-outer-spin-button {
+input[type='number']::-webkit-inner-spin-button, input[type='number']::-webkit-outer-spin-button {
   height: auto;
 }
 
@@ -338,13 +307,13 @@ input[type="number"]::-webkit-outer-spin-button {
  * 2. Address `box-sizing` set to `border-box` in Safari and Chrome
  *  (include `-moz` to future-proof).
  */
-input[type="search"] {
-  -webkit-appearance: textfield;
-  /* 1 */
-  -moz-box-sizing: content-box;
+input[type='search'] {
   -webkit-box-sizing: content-box;
   /* 2 */
+  -moz-box-sizing: content-box;
   box-sizing: content-box;
+  -webkit-appearance: textfield;
+  /* 1 */
 }
 
 /**
@@ -352,8 +321,7 @@ input[type="search"] {
  * Safari (but not Chrome) clips the cancel button when the search input has
  * padding (and `textfield` appearance).
  */
-input[type="search"]::-webkit-search-cancel-button,
-input[type="search"]::-webkit-search-decoration {
+input[type='search']::-webkit-search-cancel-button, input[type='search']::-webkit-search-decoration {
   -webkit-appearance: none;
 }
 
@@ -361,9 +329,9 @@ input[type="search"]::-webkit-search-decoration {
  * Define consistent border, margin, and padding.
  */
 fieldset {
-  border: 1px solid #c0c0c0;
   margin: 0 2px;
-  padding: 0.35em 0.625em 0.75em;
+  padding: .35em .625em .75em;
+  border: 1px solid #c0c0c0;
 }
 
 /**
@@ -373,10 +341,10 @@ fieldset {
  * 4. Corrects alignment displayed oddly in IE 6/7.
  */
 legend {
-  border: 0;
-  /* 1 */
   padding: 0;
   /* 2 */
+  border: 0;
+  /* 1 */
 }
 
 /**
@@ -400,12 +368,11 @@ optgroup {
  * Remove most spacing between table cells.
  */
 table {
-  border-collapse: collapse;
   border-spacing: 0;
+  border-collapse: collapse;
 }
 
-td,
-th {
+td, th {
   padding: 0;
 }
 
@@ -418,11 +385,7 @@ th {
 /* ==========================================================================
    Base styles: opinionated defaults
    ========================================================================== */
-html,
-button,
-input,
-select,
-textarea {
+html, button, input, select, textarea {
   color: #222;
 }
 
@@ -451,21 +414,18 @@ html {
  */
 hr {
   display: block;
+  margin: 1em 0;
+  padding: 0;
   height: 1px;
   border: 0;
   border-top: 1px solid #ccc;
-  margin: 1em 0;
-  padding: 0;
 }
 
 /*
  * Remove the gap between images, videos, audio and canvas and the bottom of
  * their containers: h5bp.com/i/440
  */
-audio,
-canvas,
-img,
-video {
+audio, canvas, img, video {
   vertical-align: middle;
 }
 
@@ -473,9 +433,9 @@ video {
  * Remove default fieldset styles.
  */
 fieldset {
-  border: 0;
   margin: 0;
   padding: 0;
+  border: 0;
 }
 
 /*
@@ -489,10 +449,10 @@ textarea {
    Browse Happy prompt
    ========================================================================== */
 .browsehappy {
-  margin: 0.2em 0;
+  margin: .2em 0;
+  padding: .2em 0;
   background: #ccc;
   color: #000;
-  padding: 0.2em 0;
 }
 
 /* ==========================================================================
@@ -505,18 +465,18 @@ textarea {
  * Image replacement
  */
 .ir {
-  background-color: transparent;
-  border: 0;
   overflow: hidden;
+  border: 0;
+  background-color: transparent;
   /* IE 6/7 fallback */
   *text-indent: -9999px;
 }
 
 .ir:before {
-  content: "";
   display: block;
   width: 0;
   height: 150%;
+  content: '';
 }
 
 /*
@@ -531,28 +491,27 @@ textarea {
  * Hide only visually, but have it available for screenreaders: h5bp.com/v
  */
 .visuallyhidden {
-  border: 0;
-  clip: rect(0 0 0 0);
-  height: 1px;
-  margin: -1px;
-  overflow: hidden;
-  padding: 0;
   position: absolute;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  margin: -1px;
+  padding: 0;
   width: 1px;
+  height: 1px;
+  border: 0;
 }
 
 /*
  * Extends the .visuallyhidden class to allow the element to be focusable
  * when navigated to via the keyboard: h5bp.com/p
  */
-.visuallyhidden.focusable:active,
-.visuallyhidden.focusable:focus {
-  clip: auto;
-  height: auto;
-  margin: 0;
-  overflow: visible;
+.visuallyhidden.focusable:active, .visuallyhidden.focusable:focus {
   position: static;
+  overflow: visible;
+  clip: auto;
+  margin: 0;
   width: auto;
+  height: auto;
 }
 
 /*
@@ -573,12 +532,11 @@ textarea {
  * 2. The use of `table` rather than `block` is only necessary if using
  *    `:before` to contain the top-margins of child elements.
  */
-.clearfix:before,
-.clearfix:after {
-  content: " ";
-  /* 1 */
+.clearfix:before, .clearfix:after {
   display: table;
   /* 2 */
+  content: ' ';
+  /* 1 */
 }
 
 .clearfix:after {
@@ -611,14 +569,13 @@ textarea {
 @media print {
   * {
     background: transparent !important;
+    box-shadow: none !important;
     color: #000 !important;
     /* Black prints faster: h5bp.com/s */
-    box-shadow: none !important;
     text-shadow: none !important;
   }
 
-  a,
-  a:visited {
+  a, a:visited {
     text-decoration: underline;
   }
 
@@ -630,17 +587,14 @@ textarea {
     content: " (" attr(title) ")";
   }
 
-  /*
-   * Don't show links for images, or javascript/internal links
-   */
-  .ir a:after,
-  a[href^="javascript:"]:after,
-  a[href^="#"]:after {
-    content: "";
+  	/*
+       * Don't show links for images, or javascript/internal links
+       */
+  .ir a:after, a[href^='javascript:']:after, a[href^='#']:after {
+    content: '';
   }
 
-  pre,
-  blockquote {
+  pre, blockquote {
     border: 1px solid #999;
     page-break-inside: avoid;
   }
@@ -650,8 +604,7 @@ textarea {
     /* h5bp.com/t */
   }
 
-  tr,
-  img {
+  tr, img {
     page-break-inside: avoid;
   }
 
@@ -660,17 +613,14 @@ textarea {
   }
 
   @page {
-    margin: 0.5cm;
+    margin: .5cm;
   }
-  p,
-  h2,
-  h3 {
+  p, h2, h3 {
     orphans: 3;
     widows: 3;
   }
 
-  h2,
-  h3 {
+  h2, h3 {
     page-break-after: avoid;
   }
 }
@@ -690,9 +640,4 @@ header, .content, footer {
   float: left;
   margin-left: 0;
   margin-right: 0;
-}
-
-.container {
-  width: 40px;
-  background: blue;
 }
