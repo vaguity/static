@@ -102,14 +102,14 @@ gulp.task('watch', function() {
 // Aliases and bundled tasks
 // ------------------------------------
 
+// Rebuild task
+gulp.task('rebuild', ['process:dependencies']);
+
 // Styles task
 gulp.task('styles', ['compass']);
 
 // Build task
 gulp.task('build', ['comb', 'styles', 'plugins', 'scripts']);
-
-// Rebuild task
-gulp.task('rebuild', ['process:dependencies']);
 
 // Default task
 gulp.task('default', ['build', 'watch']);
