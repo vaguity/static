@@ -1,6 +1,7 @@
 // ------------------------------------
 // Load plugins
 // ------------------------------------
+
 var gulp = require('gulp'),
 	plugins = require('gulp-load-plugins')({ camelize: true }),
 	mainBowerFiles = require('main-bower-files'),
@@ -12,6 +13,7 @@ function handleError(err) {
 	console.log(err.toString());
 	this.emit('end');
 }
+
 
 // ------------------------------------
 // Tasks
