@@ -1,32 +1,30 @@
 {
-  "name": "static",
-  "version": "0.0.1",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/vaguity/static.git"
-  },
-  "dependencies": {},
-  "devDependencies": {
-    "del": "*",
-    "gulp": "*",
-    "gulp-autoprefixer": "*",
-    "gulp-cache": "*",
-    "gulp-compass": "*",
-    "gulp-concat": "*",
-    "gulp-csscomb": "*",
-    "gulp-imagemin": "*",
-    "gulp-jshint": "*",
-    "gulp-livereload": "*",
-    "gulp-load-plugins": "*",
-    "gulp-minify-css": "*",
-    "gulp-notify": "*",
-    "gulp-plumber": "*",
-    "gulp-rename": "*",
-    "gulp-ruby-sass": "*",
-    "gulp-uglify": "*",
-    "gulp-util": "*",
-    "main-bower-files": "*",
-    "merge-stream": "*",
-    "run-sequence": "*"
-  }
+	"name": "static",
+	"version": "0.0.1",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/vaguity/static.git"
+	},
+	"dependencies": {},
+	"devDependencies": {
+		"del": "*",
+		"gulp": "*",
+		"gulp-autoprefixer": "*",
+		"gulp-cache": "*",
+		"gulp-compass": "*",
+		"gulp-concat": "*",
+		"gulp-csscomb": "*",
+		"gulp-imagemin": "*",
+		"gulp-jshint": "*",
+		"gulp-load-plugins": "*",
+		"gulp-minify-css": "*",
+		"gulp-notify": "*",
+		"gulp-plumber": "*",
+		"gulp-rename": "*",
+		"gulp-sourcemaps": "*",
+		"gulp-uglify": "*",
+		"gulp-util": "*",
+		"main-bower-files": "*",
+		"merge-stream": "*"
+	}
 }
