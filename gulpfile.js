@@ -30,16 +30,13 @@ gulp.task('compass', function() {
 	return gulp.src('src/scss/**/*.scss')
 		.pipe(plugins.plumber())
 		.pipe(plugins.compass({
-			// config_file: 'config.rb',
 			css: 'dist/assets/css',
 			sass: 'src/scss',
 			require: ['susy', 'breakpoint'],
-			// style: 'compressed',
 			comments: false,
 			logging: false
 		}))
-		.on('error', handleError)
-		.pipe(gulp.dest('dist/assets/css'));
+		.on('error', handleError);
 });
 
 // Scripts
@@ -113,4 +110,4 @@ gulp.task('build', ['comb', 'styles', 'plugins', 'scripts']);
 gulp.task('rebuild', ['process:dependencies']);
 
 // Default task
-gulp.task('default', ['comb', 'styles', 'plugins', 'scripts', 'watch']);
+gulp.task('default', ['build', 'watch']);
