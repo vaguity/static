@@ -14,6 +14,9 @@ function handleError(err) {
 	this.emit('end');
 }
 
+// Distribution directory
+var dist = 'dist';
+
 
 // ------------------------------------
 // Tasks
@@ -32,7 +35,7 @@ gulp.task('compass', function() {
 	return gulp.src('src/scss/**/*.scss')
 		.pipe(plugins.plumber())
 		.pipe(plugins.compass({
-			css: 'dist/assets/css',
+			css: dist + '/assets/css',
 			sass: 'src/scss',
 			require: ['susy', 'breakpoint'],
 			comments: false,
@@ -51,7 +54,7 @@ gulp.task('scripts', function() {
 		.pipe(plugins.rename({ suffix: '.min' }))
 		.pipe(plugins.uglify())
 		.on('error', handleError)
-		.pipe(gulp.dest('dist/assets/js'))
+		.pipe(gulp.dest(dist + '/assets/js'))
 });
 
 gulp.task('plugins', function() {
@@ -60,7 +63,7 @@ gulp.task('plugins', function() {
 		.pipe(plugins.rename({ suffix: '.min' }))
 		.pipe(plugins.uglify())
 		.on('error', handleError)
-		.pipe(gulp.dest('dist/assets/js/lib'));
+		.pipe(gulp.dest(dist + '/assets/js/lib'));
 });
 
 // Dependencies
