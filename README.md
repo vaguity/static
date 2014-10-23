@@ -9,12 +9,19 @@ This repo:
 1. provides a modifiable workflow in one place that produces an uncluttered static site in `/dist`.
 
 
+
+`gem install bundler`
+`npm install`
+`gulp init`
+
+
+
+
 ### The Ruby gems
 
 _Compass, Susy, Breakpoint_
 
 `gem install bundler`
-`bundle install`
 
 
 ### The Node packages
@@ -24,11 +31,7 @@ _Gulp and packages in support of Gulp_
 `npm install`
 
 
-### The Bower components
-
-_jQuery, Modernizr, jQuery UI, Normalize, HTML5 Boilerplate, Bootstrap_
-
-`bower install`
+### Gulp setup
 
 
 ### All together now
