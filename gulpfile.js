@@ -43,7 +43,8 @@ gulp.task('reset', function() {
 		]))
 		.pipe(shell([
 			'rm -rf node_modules',
-			'rm -rf bower_components'],
+			'rm -rf bower_components',
+			'rm -rf .sass-cache'],
 			{cwd: './gulp'}
 		))
 		.pipe(gulp.dest(''));
