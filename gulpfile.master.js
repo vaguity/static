@@ -5,6 +5,7 @@ var shell = require('gulp-shell');
 
 gulp.task('init', function() {
 	if (typeof init !== 'undefined') {
+		console.log('Warning: Project already initialized. Running init script again.')
 		return gulp.src('')
 		.pipe(shell([
 			'npm install',
@@ -43,8 +44,13 @@ gulp.task('reset', function() {
 		]))
 		.pipe(shell([
 			'rm -rf node_modules',
-			'rm -rf bower_components'],
+			'rm -rf bower_components',
+			'rm -rf .sass-cache'],
 			{cwd: './gulp'}
 		))
 		.pipe(gulp.dest(''));
 });
+
+gulp.task('reinit', ['reset']);
+
+gulp.task('update', ['reinit', 'init']);

@@ -1,3 +1,5 @@
+var init = true;
+
 var gulp = require('gulp');
 var hub = require('gulp-hub');
 var prompt = require('gulp-prompt');
@@ -5,6 +7,7 @@ var shell = require('gulp-shell');
 
 gulp.task('init', function() {
 	if (typeof init !== 'undefined') {
+		console.log('Warning: Project already initialized. Running init script again.')
 		return gulp.src('')
 		.pipe(shell([
 			'npm install',
@@ -49,3 +52,9 @@ gulp.task('reset', function() {
 		))
 		.pipe(gulp.dest(''));
 });
+
+gulp.task('reinit', ['reset']);
+
+gulp.task('update', ['reinit', 'init']);
+
+hub('gulp/gulpfile.js');

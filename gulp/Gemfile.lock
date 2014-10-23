@@ -34,4 +34,5 @@ PLATFORMS
 DEPENDENCIES
   breakpoint
   compass
+  sass
   susy
