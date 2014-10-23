@@ -9,34 +9,35 @@ This repo:
 1. provides a modifiable workflow in one place that produces an uncluttered static site in `/dist`.
 
 
+### Dependencies
 
-`gem install bundler`
+You'll need npm, a global install of gulp, and some sort of Ruby setup with a global install of bundler.
+
+
+### Installation
+
+In the root directory:
+
 `npm install`
 `gulp init`
 
+This initializes the root `gulpfile.js` to include the tasks from `/gulp/gulpfile.js`. Then run:
+
+`gulp rebuild`
 
 
+### Usage
 
-### The Ruby gems
+`gulp rebuild` will rebuild all dependencies again
+`gulp build` runs (nearly) all tasks
+`gulp watch` watches for JS and SCSS file changes
+`gulp` will build and then watch
 
-_Compass, Susy, Breakpoint_
-
-`gem install bundler`
-
-
-### The Node packages
-
-_Gulp and packages in support of Gulp_
-
-`npm install`
+Edit JS or SCSS files in `/src` while watching and they will build to `/dist/assets`.
 
 
-### Gulp setup
+### Reset
 
+`gulp reset` will clear out all all `node_modules`, `bower_components`, and the `.sass-cache`. You'll need to run through the installation again to run dependencies.
 
-### All together now
-
-`gulp rebuild` to move all dependencies over
-`gulp build` to run everything
-`gulp watch` to watch for file changes
-`gulp` to build and watch
+`gulp reinit` runs reset and init again.

@@ -45,6 +45,9 @@ var resetScript = function(resetCheck) {
 			'rm -rf node_modules',
 			'cp .gulpfile.master.js gulpfile.js'
 		]))
+		.pipe(gulpif(resetCheck, shell([
+			'npm install'
+		])))
 		.pipe(shell([
 			'rm -rf node_modules',
 			'rm -rf bower_components',

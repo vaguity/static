@@ -1,3 +1,5 @@
+var init = true;
+
 var gulp = require('gulp');
 var gulpif = require('gulp-if');
 var hub = require('gulp-hub');
@@ -45,6 +47,9 @@ var resetScript = function(resetCheck) {
 			'rm -rf node_modules',
 			'cp .gulpfile.master.js gulpfile.js'
 		]))
+		.pipe(gulpif(resetCheck, shell([
+			'npm install'
+		])))
 		.pipe(shell([
 			'rm -rf node_modules',
 			'rm -rf bower_components',
@@ -64,3 +69,5 @@ gulp.task('reinit', function() {
 });
 
 gulp.task('update', ['reinit'], function() { initScript(); });
+
+hub('gulp/gulpfile.js');

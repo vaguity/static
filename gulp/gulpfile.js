@@ -47,7 +47,7 @@ gulp.task('sass', function() {
 
 // Scripts
 gulp.task('scripts', function() {
-	return gulp.src([src + '/js/*.js', '!src/js/lib/*'])
+	return gulp.src([src + '/js/*.js', '!' + src + '/js/lib/*'])
 		.pipe(plugins.plumber())
 		.pipe(plugins.jshint('.jshintrc'))
 		.pipe(plugins.jshint.reporter('default'))
