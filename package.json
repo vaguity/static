@@ -1,16 +1,17 @@
 {
-  "name": "static",
-  "version": "1.0.0",
-  "private": true,
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/vaguity/static.git"
-  },
-  "dependencies": {},
-  "devDependencies": {
-    "gulp": "*",
-    "gulp-hub": "*",
-    "gulp-prompt": "*",
-    "gulp-shell": "*"
-  }
+	"name": "static",
+	"version": "1.0.0",
+	"private": true,
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/vaguity/static.git"
+	},
+	"dependencies": {},
+	"devDependencies": {
+		"gulp": "*",
+		"gulp-hub": "*",
+		"gulp-if": "*",
+		"gulp-prompt": "*",
+		"gulp-shell": "*"
+	}
 }

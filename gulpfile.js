@@ -1,11 +1,10 @@
-var init = true;
-
 var gulp = require('gulp');
+var gulpif = require('gulp-if');
 var hub = require('gulp-hub');
 var prompt = require('gulp-prompt');
 var shell = require('gulp-shell');
 
-gulp.task('init', function() {
+var initScript = function() {
 	if (typeof init !== 'undefined') {
 		console.log('Warning: Project already initialized. Running init script again.')
 		return gulp.src('')
@@ -26,23 +25,25 @@ gulp.task('init', function() {
 			{cwd: './gulp'})
 		)
 		.pipe(shell([
-			'printf "var init = true;\n\n" | cat - gulpfile.js > gulpfile.js.tmp && mv gulpfile.js.tmp gulpfile.js',
+			'printf "var init = true;\n\n" | cat - gulpfile.js > .gulpfile.js.tmp && mv .gulpfile.js.tmp gulpfile.js',
 			'printf "\nhub(\'gulp/gulpfile.js\');\n" >> gulpfile.js\n'
 		]));
-});
+}
 
-gulp.task('reset', function() {
+var resetScript = function(resetCheck) {
+	resetCheck = typeof resetCheck !== 'undefined' ? resetCheck : false;
 	if (typeof init == 'undefined') {
 		console.log('Error: Project not initialized. Run \'gulp init\'');
 		return;
 	}
 	return gulp.src('')
-		.pipe(prompt.confirm({
-			message: 'Are you sure? This will delete all node_modules and bower_components.',
+		.pipe(gulpif(!resetCheck, prompt.confirm({
+			message: 'Are you sure? This will delete all dependencies.',
 			default: true
-		}))
+		})))
 		.pipe(shell([
-			'rm -rf node_modules'
+			'rm -rf node_modules',
+			'cp .gulpfile.master.js gulpfile.js'
 		]))
 		.pipe(shell([
 			'rm -rf node_modules',
@@ -51,10 +52,15 @@ gulp.task('reset', function() {
 			{cwd: './gulp'}
 		))
 		.pipe(gulp.dest(''));
+}
+
+gulp.task('init', function() { initScript(); });
+
+gulp.task('reset', function() { resetScript(false); });
+
+gulp.task('reinit', function() {
+	resetScript(true);
+	initScript();
 });
 
-gulp.task('reinit', ['reset']);
-
-gulp.task('update', ['reinit', 'init']);
-
-hub('gulp/gulpfile.js');
+gulp.task('update', ['reinit'], function() { initScript(); });
