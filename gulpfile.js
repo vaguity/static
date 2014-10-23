@@ -1,5 +1,3 @@
-var init = true;
-
 var gulp = require('gulp');
 var gulpif = require('gulp-if');
 var hub = require('gulp-hub');
@@ -69,5 +67,3 @@ gulp.task('reinit', function() {
 });
 
 gulp.task('update', ['reinit'], function() { initScript(); });
-
-hub('gulp/gulpfile.js');
