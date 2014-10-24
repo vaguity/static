@@ -9,6 +9,14 @@ This repo:
 1. provides a modifiable workflow in one place that produces an uncluttered static site in `/dist`.
 
 
+### Quick start
+
+`npm install`  
+`gulp init`  
+`gulp rebuild`  
+`gulp`  
+
+
 ### Dependencies
 
 You'll need npm, a global install of gulp, and some sort of Ruby setup with a global install of bundler.
@@ -18,7 +26,7 @@ You'll need npm, a global install of gulp, and some sort of Ruby setup with a gl
 
 In the root directory:
 
-`npm install`
+`npm install`  
 `gulp init`
 
 This initializes the root `gulpfile.js` to include the tasks from `/gulp/gulpfile.js`. Then run:
@@ -28,9 +36,9 @@ This initializes the root `gulpfile.js` to include the tasks from `/gulp/gulpfil
 
 ### Usage
 
-`gulp rebuild` will rebuild all dependencies again
-`gulp build` runs (nearly) all tasks
-`gulp watch` watches for JS and SCSS file changes
+`gulp rebuild` will download all Bower packages and prep their core files for usage  
+`gulp build` runs (nearly) all tasks  
+`gulp watch` watches for JS and SCSS file changes  
 `gulp` will build and then watch
 
 Edit JS or SCSS files in `/src` while watching and they will build to `/dist/assets`.
@@ -38,6 +46,6 @@ Edit JS or SCSS files in `/src` while watching and they will build to `/dist/ass
 
 ### Reset
 
-`gulp reset` will clear out all all `node_modules`, `bower_components`, and the `.sass-cache`. You'll need to run through the installation again to run dependencies.
+`gulp reset` will clear out all all `node_modules`, `bower_components`, and the `.sass-cache`. You'll need to run `gulp init` again afterwards.
 
-`gulp reinit` runs reset and init again.
+`gulp reinit` runs both reset and init.
