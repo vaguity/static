@@ -47,7 +47,8 @@ var resetScript = function(resetCheck) {
 		.pipe(shell([
 			'rm -rf node_modules',
 			'rm -rf src/lib/*',
-			'cp .gulpfile.master.js gulpfile.js'
+			'cp .gulpfile.master.js gulpfile.js',
+			'cp .README.master.md README.md'
 		]))
 		.pipe(gulpif(resetCheck, shell([
 			'npm install'
