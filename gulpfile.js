@@ -6,28 +6,31 @@ var shell = require('gulp-shell');
 
 var initScript = function() {
 	if (typeof init !== 'undefined') {
-		console.log('Warning: Project already initialized. Running init script again.')
 		return gulp.src('')
+		.pipe(prompt.confirm('Warning: Project already initialized. Run init script again?'))
 		.pipe(shell([
 			'npm install',
 			'bundle config build.compass --pre',
 			'bundle install',
 			'bower install'],
 			{cwd: './gulp'})
-		)
+		);
 	}
-	return gulp.src('')
-		.pipe(shell([
-			'npm install',
-			'bundle config build.compass --pre',
-			'bundle install',
-			'bower install'],
-			{cwd: './gulp'})
-		)
-		.pipe(shell([
-			'printf "var init = true;\n\n" | cat - gulpfile.js > .gulpfile.js.tmp && mv .gulpfile.js.tmp gulpfile.js',
-			'printf "\nhub(\'gulp/gulpfile.js\');\n" >> gulpfile.js\n'
-		]));
+	else {
+		return gulp.src('')
+			.pipe(shell([
+				'npm install',
+				'bundle config build.compass --pre',
+				'bundle install',
+				'bower install'],
+				{cwd: './gulp'})
+			)
+			.pipe(shell([
+				'printf "var init = true;\n\n" | cat - gulpfile.js > .gulpfile.js.tmp && mv .gulpfile.js.tmp gulpfile.js',
+				'printf "\nhub(\'gulp/gulpfile.js\');\n" >> gulpfile.js\n',
+				'rm README.md'
+			]));
+	}
 }
 
 var resetScript = function(resetCheck) {
@@ -44,7 +47,8 @@ var resetScript = function(resetCheck) {
 		.pipe(shell([
 			'rm -rf node_modules',
 			'rm -rf src/lib/*',
-			'cp .gulpfile.master.js gulpfile.js'
+			'cp .gulpfile.master.js gulpfile.js',
+			'cp .README.master.md README.md'
 		]))
 		.pipe(gulpif(resetCheck, shell([
 			'npm install'
