@@ -14,7 +14,7 @@ function handleError(err) {
 	this.emit('end');
 }
 
-// Distribution directory
+// Source and distribution directories
 var dist = __dirname + '/../dist';
 var src = __dirname + '/../src';
 
@@ -24,6 +24,8 @@ var src = __dirname + '/../src';
 // ------------------------------------
 
 // CSScomb
+// Note: Lacks support for sorting mixins
+// See: https://github.com/csscomb/csscomb.js/issues/143
 // gulp.task('comb', function() {
 // 	return gulp.src(src + '/scss/**/*.scss')
 // 		.pipe(plugins.plumber())
