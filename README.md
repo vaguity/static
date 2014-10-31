@@ -1,12 +1,12 @@
 # Static
 
-## A site framework
+## A front-end framework
 
 This repo:
 
 1. puts all the front-end stuff I've found useful in one place,
 1. keeps all of those dependencies tracked by their package managers so they're under version control and can be easily updated, and
-1. provides a modifiable workflow in one place that produces an uncluttered static site in `/dist`.
+1. provides a modifiable workflow in one place that produces an uncluttered static front-end setup in `/dist`.
 
 
 ### Quick start
@@ -19,7 +19,7 @@ This repo:
 
 ### Dependencies
 
-You'll need npm, a global install of gulp, and some sort of Ruby setup with a global install of bundler.
+You'll need npm and a global install of gulp. You'll also need Ruby and a global install of sass (`gem install sass`).
 
 
 ### Installation
