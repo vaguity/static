@@ -10,8 +10,6 @@ var initScript = function() {
 		.pipe(prompt.confirm('Warning: Project already initialized. Run init script again?'))
 		.pipe(shell([
 			'npm install',
-			'bundle config build.compass --pre',
-			'bundle install',
 			'bower install'],
 			{cwd: './gulp'})
 		);
@@ -20,8 +18,6 @@ var initScript = function() {
 		return gulp.src('')
 			.pipe(shell([
 				'npm install',
-				'bundle config build.compass --pre',
-				'bundle install',
 				'bower install'],
 				{cwd: './gulp'})
 			)

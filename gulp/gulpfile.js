@@ -24,25 +24,26 @@ var src = __dirname + '/../src';
 // ------------------------------------
 
 // CSScomb
-gulp.task('comb', function() {
-	return gulp.src(src + '/scss/**/*.scss')
-		.pipe(plugins.plumber())
-        .pipe(plugins.csscomb())
-        .pipe(gulp.dest(src + '/scss'));
-});
+// gulp.task('comb', function() {
+// 	return gulp.src(src + '/scss/**/*.scss')
+// 		.pipe(plugins.plumber())
+//         .pipe(plugins.csscomb())
+//         .pipe(gulp.dest(src + '/scss'));
+// });
 
 // Sass
 gulp.task('sass', function() {
 	return gulp.src(src + '/scss/**/*.scss')
 		.pipe(plugins.plumber())
 		.pipe(plugins.rubySass({
-			compass: true,
+			// sourcemap: 'none',
 			style: 'compressed',
 			// Note: This syntax gets fixed with an update to gulp-ruby-sass
+			// See: https://github.com/sindresorhus/gulp-ruby-sass/issues/130
 			'sourcemap=none': true
 		}))
-		.pipe(gulp.dest(dist + '/assets/css'))
-		.on('error', handleError);
+		.on('error', handleError)
+		.pipe(gulp.dest(dist + '/assets/css'));
 });
 
 // Scripts
@@ -91,8 +92,12 @@ gulp.task('process:dependencies', ['clean:dependencies', 'rebuild:dependencies']
 		.pipe(gulp.dest(src + '/js/lib'));
 	var enquire = gulp.src(src + '/lib/enquire/dist/enquire.js')
 		.pipe(gulp.dest(src + '/js/lib'));
+	var susy = gulp.src(src + '/lib/susy/sass/susy/**')
+		.pipe(gulp.dest(src + '/scss/lib'));
+	var breakpoint = gulp.src(src + '/lib/compass-breakpoint/stylesheets/**')
+		.pipe(gulp.dest(src + '/scss/lib'));
 
-	return merge(html5bp, normalize, jquery, modernizr, jqueryui, enquire);
+	return merge(html5bp, normalize, jquery, modernizr, jqueryui, enquire, susy, breakpoint);
 });
 
 // Watch
@@ -113,7 +118,7 @@ gulp.task('rebuild', ['process:dependencies']);
 gulp.task('styles', ['sass']);
 
 // Build task
-gulp.task('build', ['comb', 'styles', 'plugins', 'scripts']);
+gulp.task('build', ['styles', 'plugins', 'scripts']);
 
 // Default task
 gulp.task('default', ['build', 'watch']);
