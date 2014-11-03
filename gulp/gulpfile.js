@@ -28,13 +28,10 @@ gulp.task('sass', function() {
 	return gulp.src(src + '/scss/**/*.scss')
 		.pipe(plugins.plumber())
 		.pipe(plugins.rubySass({
-			// sourcemap: 'none',
-			style: 'compressed',
-			// Note: This syntax gets fixed with an update to gulp-ruby-sass
-			// See: https://github.com/sindresorhus/gulp-ruby-sass/issues/130
-			'sourcemap=none': true
+			style: 'compressed'
 		}))
 		.on('error', handleError)
+		.pipe(plugins.plumber.stop())
 		.pipe(gulp.dest(dist + '/assets/css'))
 		.pipe(plugins.livereload());
 });
@@ -45,21 +42,34 @@ gulp.task('scripts', function() {
 		.pipe(plugins.plumber())
 		.pipe(plugins.jshint('.jshintrc'))
 		.pipe(plugins.jshint.reporter('default'))
+		.pipe(plugins.sourcemaps.init())
 		.pipe(plugins.concat('script.js'))
-		.pipe(plugins.rename({ suffix: '.min' }))
 		.pipe(plugins.uglify())
+		.pipe(plugins.rename({ suffix: '.min' }))
+		.pipe(plugins.sourcemaps.write())
 		.on('error', handleError)
+		.pipe(plugins.plumber.stop())
 		.pipe(gulp.dest(dist + '/assets/js'))
 		.pipe(plugins.livereload());
 });
 
+// Plugins
 gulp.task('plugins', function() {
 	return gulp.src([src + '/js/lib/**/*.js'])
 		.pipe(plugins.plumber())
 		.pipe(plugins.rename({ suffix: '.min' }))
 		.pipe(plugins.uglify())
 		.on('error', handleError)
-		.pipe(gulp.dest(dist + '/assets/js/lib'));
+		.pipe(plugins.plumber.stop())
+		.pipe(gulp.dest(dist + '/assets/js/lib'))
+		.pipe(plugins.livereload());
+});
+
+// Watch
+gulp.task('watch', function() {
+	gulp.watch(src + '/scss/**/*.scss', ['sass']);
+	gulp.watch(src + '/js/**/*.js', ['scripts']);
+	gulp.watch(src + '/js/lib/**/*.js', ['plugins']);
 });
 
 // Dependencies
@@ -92,12 +102,6 @@ gulp.task('process:dependencies', ['clean:dependencies', 'rebuild:dependencies']
 		.pipe(gulp.dest(src + '/scss/lib'));
 
 	return merge(html5bp, normalize, jquery, modernizr, jqueryui, enquire, susy, breakpoint);
-});
-
-// Watch
-gulp.task('watch', function() {
-	gulp.watch(src + '/scss/**/*.scss', ['styles']);
-	gulp.watch(src + '/js/**/*.js', ['scripts']);
 });
 
 
