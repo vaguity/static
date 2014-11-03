@@ -23,16 +23,6 @@ var src = __dirname + '/../src';
 // Tasks
 // ------------------------------------
 
-// CSScomb
-// Note: Lacks support for sorting mixins
-// See: https://github.com/csscomb/csscomb.js/issues/143
-// gulp.task('comb', function() {
-// 	return gulp.src(src + '/scss/**/*.scss')
-// 		.pipe(plugins.plumber())
-//         .pipe(plugins.csscomb())
-//         .pipe(gulp.dest(src + '/scss'));
-// });
-
 // Sass
 gulp.task('sass', function() {
 	return gulp.src(src + '/scss/**/*.scss')
@@ -45,7 +35,8 @@ gulp.task('sass', function() {
 			'sourcemap=none': true
 		}))
 		.on('error', handleError)
-		.pipe(gulp.dest(dist + '/assets/css'));
+		.pipe(gulp.dest(dist + '/assets/css'))
+		.pipe(plugins.livereload());
 });
 
 // Scripts
@@ -59,6 +50,7 @@ gulp.task('scripts', function() {
 		.pipe(plugins.uglify())
 		.on('error', handleError)
 		.pipe(gulp.dest(dist + '/assets/js'))
+		.pipe(plugins.livereload());
 });
 
 gulp.task('plugins', function() {
@@ -124,3 +116,18 @@ gulp.task('build', ['styles', 'plugins', 'scripts']);
 
 // Default task
 gulp.task('default', ['build', 'watch']);
+
+
+// ------------------------------------
+// Archived task
+// ------------------------------------
+
+// CSScomb
+// Note: CSScomb currently lacks support for sorting @include statements
+// See https://github.com/csscomb/csscomb.js/issues/143
+// gulp.task('comb', function() {
+// 	return gulp.src(src + '/scss/**/*.scss')
+// 		.pipe(plugins.plumber())
+//         .pipe(plugins.csscomb())
+//         .pipe(gulp.dest(src + '/scss'));
+// });

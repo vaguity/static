@@ -13,6 +13,7 @@
 		"gulp-csscomb": "*",
 		"gulp-imagemin": "*",
 		"gulp-jshint": "*",
+		"gulp-livereload": "*",
 		"gulp-load-plugins": "*",
 		"gulp-minify-css": "*",
 		"gulp-notify": "*",

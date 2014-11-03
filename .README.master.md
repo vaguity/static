@@ -46,6 +46,13 @@ Edit JS or SCSS files in `/src` while watching and they will build to `/dist/ass
 
 ### Reset
 
-`gulp reset` will clear out all all `node_modules`, `bower_components`, and the `.sass-cache`. You'll need to run `gulp init` again afterwards.
+`gulp reset` will clear out all all `node_modules`, `bower_components`, and the `.sass-cache`. You'll need to run `gulp init` again afterwards. Note that `gulp init` and `gulp reset` will remove/add this README in the root directory.
 
 `gulp reinit` runs both reset and init.
+
+
+### Notes
+
+- The `gulp-livereload` plugin works with the LiveReload brower extension.
+- The `gulp-imagemin` plugin currently throws errors due to optional node dependencies. See [this issue](https://github.com/vaguity/static/issues/4).
+- CSScomb doesn't have proper support for ordering of SASS @include statements. There's an ugly workaround that could work, but it would be better if CSScomb added support for this. Issue is [tracked here](https://github.com/csscomb/csscomb.js/issues/204).
