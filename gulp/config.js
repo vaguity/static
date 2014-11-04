@@ -52,14 +52,26 @@ module.exports = {
 		]
 	},
 	browserify: {
-		// Enable source maps
 		debug: true,
-		// A separate bundle will be generated for each
-		// bundle config in the list below
 		bundleConfigs: [{
-			entries: src + '/js/scripts.js',
-			dest: dist + '/js/scripts.min.js',
-			outputName: 'scripts.js'
+			entries: src + '/js/lib/modernizr.js',
+			dest: dist + '/assets/js/lib',
+			outputName: 'modernizr.min.js'
+		},
+		{
+			entries: src + '/js/lib/jquery.js',
+			dest: dist + '/assets/js/lib',
+			outputName: 'jquery.min.js'
+		},
+		{
+			entries: src + '/js/lib/enquire.js',
+			dest: dist + '/assets/js/lib',
+			outputName: 'enquire.min.js'
+		},
+		{
+			entries: src + '/js/script.js',
+			dest: dist + '/assets/js',
+			outputName: 'script.min.js'
 		}]
 	}
 }

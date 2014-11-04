@@ -11,7 +11,7 @@ gulp.task('clean:dependencies', function(callback) {
 	del([config.src], {force: true}, callback);
 });
 
-gulp.task('rebuild:dependencies', function() {
+gulp.task('rebuild:dependencies', ['clean:dependencies'], function() {
 	return gulp.src(mainBowerFiles(), { base: 'bower_components'})
 		.pipe(gulp.dest(config.src));
 });

@@ -12,8 +12,7 @@ This repo:
 ### Quick start
 
 `npm install`  
-`gulp init`  
-`gulp rebuild`  
+`bower install`  
 `gulp`  
 
 

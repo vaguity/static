@@ -5,6 +5,9 @@ var gulp = require('gulp');
 var handleErrors = require('../util/handleErrors');
 var source = require('vinyl-source-stream');
 var config = require('../config').browserify;
+var uglify = require('gulp-uglify');
+var streamify = require('gulp-streamify');
+var jshint = require('gulp-jshint');
 
 gulp.task('browserify', function(callback) {
 
@@ -26,8 +29,10 @@ gulp.task('browserify', function(callback) {
 
 			return bundler
 				.bundle()
-				.on('error', handleErrors)
 				.pipe(source(bundleConfig.outputName))
+				.on('error', handleErrors)
+				.pipe(jshint())
+				.pipe(streamify(uglify()))
 				.pipe(gulp.dest(bundleConfig.dest))
 				.on('end', reportFinished);
 		};

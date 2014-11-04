@@ -5,11 +5,9 @@ var config = require('../config').sass;
 
 gulp.task('sass', function() {
 	return gulp.src(config.src)
-		.pipe(plugins.plumber())
-		.pipe(plugins.rubySass({
+		.pipe(rubySass({
 			style: 'compressed'
 		}))
 		.on('error', handleErrors)
-		.pipe(plugins.plumber.stop())
 		.pipe(gulp.dest(config.dest));
 });
