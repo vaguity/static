@@ -7,7 +7,14 @@
 		"url": "https://github.com/vaguity/static.git"
 	},
 	"dependencies": {
-		"jquery": "^2.1.1"
+		"jquery": "*",
+		"enquire": "WickyNilliams/enquire.js"
+	},
+	"browserify" :{
+		"transform": ["browserify-shim"]
+	},
+	"browserify-shim": {
+
 	},
 	"devDependencies": {
 		"browserify": "*",
@@ -17,7 +24,6 @@
 		"gulp-autoprefixer": "*",
 		"gulp-cache": "*",
 		"gulp-concat": "*",
-		"gulp-csscomb": "*",
 		"gulp-if": "*",
 		"gulp-jshint": "*",
 		"gulp-livereload": "*",
