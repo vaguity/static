@@ -1,8 +1,9 @@
-var gulp = require('gulp');
-var gulpif = require('gulp-if');
-var hub = require('gulp-hub');
-var prompt = require('gulp-prompt');
-var shell = require('gulp-shell');
+var requireDir = require('require-dir');
+
+requireDir('./gulp/tasks');
+
+
+/*
 
 var initScript = function() {
 	if (typeof init !== 'undefined') {
@@ -68,3 +69,5 @@ gulp.task('reinit', function() {
 });
 
 gulp.task('update', ['reinit'], function() { initScript(); });
+
+*/

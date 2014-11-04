@@ -6,12 +6,36 @@
 		"type": "git",
 		"url": "https://github.com/vaguity/static.git"
 	},
-	"dependencies": {},
+	"dependencies": {
+		"jquery": "^2.1.1"
+	},
 	"devDependencies": {
+		"browserify": "*",
+		"browserify-shim": "*",
+		"del": "*",
 		"gulp": "*",
-		"gulp-hub": "*",
+		"gulp-autoprefixer": "*",
+		"gulp-cache": "*",
+		"gulp-concat": "*",
+		"gulp-csscomb": "*",
 		"gulp-if": "*",
+		"gulp-jshint": "*",
+		"gulp-livereload": "*",
+		"gulp-minify-css": "*",
+		"gulp-notify": "*",
+		"gulp-plumber": "*",
 		"gulp-prompt": "*",
-		"gulp-shell": "*"
+		"gulp-rename": "*",
+		"gulp-ruby-sass": "*",
+		"gulp-shell": "*",
+		"gulp-sourcemaps": "*",
+		"gulp-uglify": "*",
+		"gulp-util": "*",
+		"main-bower-files": "*",
+		"merge-stream": "*",
+		"pretty-hrtime": "*",
+		"require-dir": "*",
+		"vinyl-source-stream": "*",
+		"watchify": "*"
 	}
 }
