@@ -40,9 +40,9 @@ gulp.task('browserify', function(callback) {
 				.on('error', handleErrors)
 				.pipe(source(bundleConfig.outputName))
 				.pipe(buffer())
-				.pipe(sourcemaps.init({loadMaps: true}))
+				.pipe(gulpif(config.debug, sourcemaps.init({loadMaps: true})))
 					.pipe(uglify())
-				.pipe(sourcemaps.write())
+				.pipe(gulpif(config.debug, sourcemaps.write()))
 				.pipe(gulp.dest(bundleConfig.dest))
 				.on('end', reportFinished)
 				.pipe(gulpif(global.isWatching, livereload()));

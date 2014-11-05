@@ -1,57 +1,82 @@
-# Static
+# Static, a front-end framework
 
-## A front-end framework
+This project:
 
-This repo:
-
-1. puts all the front-end stuff I've found useful in one place,
-1. keeps all of those dependencies tracked by their package managers so they're under version control and can be easily updated, and
-1. provides a modifiable workflow in one place that produces an uncluttered static front-end setup in `/dist`.
+1. puts a number of useful front-end utilities in a task runner,
+1. keeps those dependencies tracked by package managers so they're under version control and can be easily updated, and
+1. provides a flexible, modifiable workflow in one place that produces an uncluttered front-end setup.
 
 
-### Quick start
+## Quick start
 
 `npm install`  
 `bower install`  
+`gulp rebuild`  
 `gulp`  
 
 
-### Dependencies
+## Dependencies
 
 You'll need npm and a global install of gulp. You'll also need Ruby and a global install of sass (`gem install sass`).
 
 
-### Installation
+## Installation
 
 In the root directory:
 
 `npm install`  
-`gulp init`
+`bower intsall`
 
-This initializes the root `gulpfile.js` to include the tasks from `/gulp/gulpfile.js`. Then run:
+This installs all the Node modules and Bower components from `package.json` and `bower.json` respectively.
 
 `gulp rebuild`
 
-
-### Usage
-
-`gulp rebuild` will download all Bower packages and prep their core files for usage  
-`gulp build` runs (nearly) all tasks  
-`gulp watch` watches for JS and SCSS file changes  
-`gulp` will build and then watch
-
-Edit JS or SCSS files in `/src` while watching and they will build to `/dist/assets`.
+The rebuild task will pull process the Bower dependencies listed with the parameters supplied in `gulp/config.js`.
 
 
-### Reset
+## Configuration
 
-`gulp reset` will clear out all all `node_modules`, `bower_components`, and the `.sass-cache`. You'll need to run `gulp init` again afterwards. Note that `gulp init` and `gulp reset` will remove/add this README in the root directory.
+The `gulp/config.js` file sets up the project directories and how dependencies are managed.
 
-`gulp reinit` runs both reset and init.
+### dist, src
+
+The `dist` and `src` variables set the project's development and production directories.
+
+### packageType
+
+Defines where a package type should go in the source directory. For example, Sass partials can be placed so they're available in a particular subdirectory. New packageTypes can be added and used in the Bower configuration.
+
+### config.sass
+
+Sets the source and destination directories for Sass.
+
+### config.bower
+
+`.src` sets the directory where Bower components are copied for use by the dependency tasks.
+
+`.packages` defines the type of package each Bower package is, and any path traversal that the processor must use to get to the main files. Main files are defined in the Bower component's `bower.json` under `main` or in the project's `bower.json` under `overrides`. See the [main-bower-files](https://www.npmjs.org/package/main-bower-files) package for details.
+
+### config.browserify
+
+Defines the Browserify bundles by their source, destination and filename.
 
 
-### Notes
+## Usage
 
-- The `gulp-livereload` plugin works with the LiveReload brower extension.
-- The `gulp-imagemin` plugin currently throws errors on install due to optional node dependencies. See [this issue](https://github.com/vaguity/static/issues/4).
-- CSScomb doesn't have proper support for ordering of SASS @include statements. There's an ugly workaround that could work, but it would be better if CSScomb added support for this. Issue is [tracked here](https://github.com/csscomb/csscomb.js/issues/204).
+`gulp`  
+Runs `build` and `watch`
+
+`gulp build`  
+Processes Browserify bundles and Sass
+
+`gulp watch`  
+Watches for changes to Sass files and any source files of Browserify packages
+
+`gulp rebuild`  
+Processes all dependencies as defined by `config.bower`
+
+`gulp browserify`  
+Processes Browserify bundles as defined by `config.browserify`
+
+`gulp sass`  
+Processes Sass files
