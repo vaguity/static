@@ -5,8 +5,12 @@ var gulp = require('gulp');
 var handleErrors = require('../util/handleErrors');
 var source = require('vinyl-source-stream');
 var config = require('../config').browserify;
-var uglify = require('gulp-uglify');
 var streamify = require('gulp-streamify');
+var livereload = require('gulp-livereload');
+var gulpif = require('gulp-if');
+var uglify = require('gulp-uglify');
+var sourcemaps = require('gulp-sourcemaps');
+var buffer = require('vinyl-buffer');
 
 gulp.task('browserify', function(callback) {
 
@@ -30,9 +34,13 @@ gulp.task('browserify', function(callback) {
 				.bundle()
 				.on('error', handleErrors)
 				.pipe(source(bundleConfig.outputName))
-				.pipe(streamify(uglify()))
+				.pipe(buffer())
+				.pipe(sourcemaps.init({loadMaps: true}))
+					.pipe(uglify())
+				.pipe(sourcemaps.write())
 				.pipe(gulp.dest(bundleConfig.dest))
-				.on('end', reportFinished);
+				.on('end', reportFinished)
+				.pipe(gulpif(global.isWatching, livereload()));
 		};
 
 		if (global.isWatching) {
