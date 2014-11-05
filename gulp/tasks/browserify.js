@@ -8,6 +8,7 @@ var config = require('../config').browserify;
 var uglify = require('gulp-uglify');
 var streamify = require('gulp-streamify');
 var jshint = require('gulp-jshint');
+var plumber = require('gulp-plumber');
 
 gulp.task('browserify', function(callback) {
 
@@ -29,9 +30,8 @@ gulp.task('browserify', function(callback) {
 
 			return bundler
 				.bundle()
-				.pipe(source(bundleConfig.outputName))
 				.on('error', handleErrors)
-				.pipe(jshint())
+				.pipe(source(bundleConfig.outputName))
 				.pipe(streamify(uglify()))
 				.pipe(gulp.dest(bundleConfig.dest))
 				.on('end', reportFinished);

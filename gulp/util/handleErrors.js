@@ -1,4 +1,4 @@
-var notify = require("gulp-notify");
+var notify = require('gulp-notify');
 
 module.exports = function() {
 
