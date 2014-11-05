@@ -6,35 +6,15 @@
 		"type": "git",
 		"url": "https://github.com/vaguity/static.git"
 	},
-	"dependencies": {
-		"jquery": "*",
-		"enquire": "WickyNilliams/enquire.js"
-	},
-	"browserify": {
-		"transform": [
-			"browserify-shim"
-		]
-	},
-	"browserify-shim": {},
 	"devDependencies": {
 		"browserify": "*",
-		"browserify-shim": "*",
 		"del": "*",
 		"gulp": "*",
-		"gulp-autoprefixer": "*",
-		"gulp-cache": "*",
-		"gulp-concat": "*",
 		"gulp-if": "*",
-		"gulp-jshint": "*",
 		"gulp-livereload": "*",
-		"gulp-minify-css": "*",
 		"gulp-notify": "*",
-		"gulp-plumber": "*",
-		"gulp-prompt": "*",
 		"gulp-rename": "*",
 		"gulp-ruby-sass": "*",
-		"gulp-shell": "*",
-		"gulp-sourcemaps": "*",
 		"gulp-streamify": "*",
 		"gulp-uglify": "*",
 		"gulp-util": "*",

@@ -7,8 +7,6 @@ var source = require('vinyl-source-stream');
 var config = require('../config').browserify;
 var uglify = require('gulp-uglify');
 var streamify = require('gulp-streamify');
-var jshint = require('gulp-jshint');
-var plumber = require('gulp-plumber');
 
 gulp.task('browserify', function(callback) {
 
