@@ -1,9 +1,13 @@
 var gulp = require('gulp');
 var gulpif = require('gulp-if');
-var rubySass = require('gulp-ruby-sass');
-var handleErrors = require('../util/handleErrors');
-var config = require('../config').sass;
 var livereload = require('gulp-livereload');
+var rubySass = require('gulp-ruby-sass');
+
+var handleErrors = require('../util/handleErrors');
+
+var config = require('../config').sass;
+
+// ------------------------------------
 
 gulp.task('sass', function() {
 	var watchCheck = typeof global.isWatching !== 'undefined' ? true : false;

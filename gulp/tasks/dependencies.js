@@ -1,11 +1,16 @@
-var gulp = require('gulp');
-var mainBowerFiles = require('main-bower-files');
-var config = require('../config').bower;
-var rename = require('gulp-rename');
-var handleErrors = require('../util/handleErrors');
 var del = require('del');
+var mainBowerFiles = require('main-bower-files');
+
+var gulp = require('gulp');
 var gulpif = require('gulp-if');
+var rename = require('gulp-rename');
+
+var handleErrors = require('../util/handleErrors');
+
+var config = require('../config').bower;
 var components = require('../../bower.json');
+
+// ------------------------------------
 
 gulp.task('clean:dependencies', function(callback) {
 	del([config.src], {force: true}, callback);

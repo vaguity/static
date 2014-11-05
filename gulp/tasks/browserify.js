@@ -1,16 +1,21 @@
 var browserify = require('browserify');
 var watchify = require('watchify');
-var bundleLogger = require('../util/bundleLogger');
-var gulp = require('gulp');
-var handleErrors = require('../util/handleErrors');
-var source = require('vinyl-source-stream');
-var config = require('../config').browserify;
-var streamify = require('gulp-streamify');
-var livereload = require('gulp-livereload');
-var gulpif = require('gulp-if');
-var uglify = require('gulp-uglify');
-var sourcemaps = require('gulp-sourcemaps');
 var buffer = require('vinyl-buffer');
+var source = require('vinyl-source-stream');
+
+var gulp = require('gulp');
+var gulpif = require('gulp-if');
+var livereload = require('gulp-livereload');
+var sourcemaps = require('gulp-sourcemaps');
+var streamify = require('gulp-streamify');
+var uglify = require('gulp-uglify');
+
+var bundleLogger = require('../util/bundleLogger');
+var handleErrors = require('../util/handleErrors');
+
+var config = require('../config').browserify;
+
+// ------------------------------------
 
 gulp.task('browserify', function(callback) {
 

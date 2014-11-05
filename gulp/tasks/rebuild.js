@@ -2,4 +2,4 @@ var gulp = require('gulp');
 
 // ------------------------------------
 
-gulp.task('default', ['watch']);
+gulp.task('rebuild', ['dependencies', 'browserify', 'sass']);
