@@ -1,15 +1,19 @@
 var gulp = require('gulp');
 var gutil = require('gulp-util');
-var webpack = require('webkpack');
+var gulpif = require('gulp-if');
+var webpack = require('webpack');
+var gulpWebpack = require('gulp-webpack');
+var livereload = require('gulp-livereload');
 
-gulp.task('webpack', function(callback) {
-	webpack({
-		// configuration
-	}, function(err, stats) {
-		if (err) throe new gtuil.PluginError('webpack', err);
-		gutil.log('[webpack]', stats.toString({
-			// output options
-		}));
-		callback();
-	});
+gulp.task('webpack', ['sass'], function() {
+
+	global.isProduction = typeof global.isProduction !== 'undefined' ? global.isProduction : undefined;
+
+	var config = require('../webpack.config.js');
+
+	var watchCheck = typeof isWatching !== 'undefined' ? true : false;
+
+	return gulp.src(config.entry)
+		.pipe(gulpWebpack(config))
+		.pipe(gulpif(watchCheck, livereload()));
 });

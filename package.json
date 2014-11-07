@@ -1,6 +1,6 @@
 {
   "name": "static",
-  "version": "0.4.2",
+  "version": "0.5.0",
   "private": true,
   "repository": {
     "type": "git",
@@ -9,6 +9,7 @@
   "devDependencies": {
     "css-loader": "*",
     "del": "*",
+    "exports-loader": "*",
     "gulp": "*",
     "gulp-if": "*",
     "gulp-livereload": "*",
@@ -19,11 +20,11 @@
     "gulp-streamify": "*",
     "gulp-uglify": "*",
     "gulp-util": "*",
+    "gulp-webpack": "^1.0.0",
+    "imports-loader": "*",
     "jquery": "*",
     "main-bower-files": "*",
-    "pretty-hrtime": "*",
     "require-dir": "*",
-    "sass-loader": "*",
     "style-loader": "*",
     "vinyl-buffer": "*",
     "vinyl-source-stream": "*",

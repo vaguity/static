@@ -10,11 +10,13 @@ var packageType = {
 module.exports = {
 	sass: {
 		src: src + '/scss/**/*.scss',
-		dest: dist + '/assets/css'
+		dest: src + '/css'
+	},
+	js: {
+		src: src + '/js/**/*.js'
 	},
 	bower: {
 		src: src + '/lib',
-
 		packages: [
 			{
 				name: 'normalize-scss',
@@ -27,15 +29,6 @@ module.exports = {
 			},
 			{
 				name: 'modernizr',
-				dest: packageType.jsLib
-			},
-			{
-				name: 'jquery',
-				path: '/dist',
-				dest: packageType.jsLib
-			},
-			{
-				name: 'jquery-ui',
 				dest: packageType.jsLib
 			},
 			{
@@ -52,28 +45,5 @@ module.exports = {
 				dest: packageType.cssLib
 			}
 		]
-	},
-	browserify: {
-		debug: true,
-		bundleConfigs: [{
-			entries: src + '/js/lib/modernizr.js',
-			dest: dist + '/assets/js/lib',
-			outputName: 'modernizr.min.js'
-		},
-		{
-			entries: src + '/js/lib/jquery.js',
-			dest: dist + '/assets/js/lib',
-			outputName: 'jquery.min.js'
-		},
-		{
-			entries: src + '/js/lib/enquire.js',
-			dest: dist + '/assets/js/lib',
-			outputName: 'enquire.min.js'
-		},
-		{
-			entries: src + '/js/script.js',
-			dest: dist + '/assets/js',
-			outputName: 'script.min.js'
-		}]
 	}
 }

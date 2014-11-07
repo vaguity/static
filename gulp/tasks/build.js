@@ -1,5 +1,3 @@
 var gulp = require('gulp');
 
-// ------------------------------------
-
-gulp.task('build', ['browserify', 'sass']);
+gulp.task('build', ['webpack']);
