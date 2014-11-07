@@ -14,6 +14,7 @@ gulp.task('webpack', ['sass'], function() {
 	var watchCheck = typeof isWatching !== 'undefined' ? true : false;
 
 	return gulp.src(config.entry)
-		.pipe(gulpWebpack(config))
+		.pipe(gulpWebpack(config, webpack))
+		.pipe(gulp.dest(config.output.path))
 		.pipe(gulpif(watchCheck, livereload()));
 });
