@@ -33,6 +33,8 @@ var config = {
 	module: {
 		loaders: [
 			{ test: /\.css$/, loader: 'style!css' },
+			{ test: /\.png$/, loader: 'url-loader?limit=8192&mimetype=image/png' },
+			{ test: /\.(jpg|gif)$/, loader: 'file-loader' },
 			{ test: /modernizr\.js$/, loader: 'imports?this=>window!exports?window.Modernizr' }
 		]
 	},
