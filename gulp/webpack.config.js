@@ -40,7 +40,8 @@ var config = {
 	},
 	output: {
 		path: distDir,
-		filename: 'bundle.js'
+		filename: 'bundle.js',
+		publicPath: '/assets/'
 	},
 	resolve: {
 		fallback: nodeModulesDir,
