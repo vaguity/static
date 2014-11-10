@@ -17,7 +17,7 @@ This project:
 
 ## Dependencies
 
-You'll need npm and a global install of gulp. You'll also need Ruby and a global install of Sass (`gem install sass`).
+You'll need npm and a global install of gulp and Bower. You'll also need Ruby and a global install of Sass (`gem install sass`).
 
 
 ## Installation
@@ -32,6 +32,8 @@ This installs all the Node modules and Bower components from `package.json` and 
 `gulp rebuild`
 
 The rebuild task will process the Bower dependencies listed with the parameters supplied in `gulp/config.js`.
+
+You can then run the default task, `gulp`, which will build the project and watch the specified CSS and JS files. See [Usage](#usage) for a full list of gulp tasks.
 
 
 ## Configuration
@@ -87,5 +89,3 @@ Runs `build` with production flags for minification and concatenation
 - The Webpack [sass-loader](https://www.npmjs.org/package/sass-loader) is based on node-sass, which is based on libsass, which doesn't offer full support for all Sass features. Right now, this means that Susy breaks. Currently relying on [gulp-ruby-sass](https://www.npmjs.org/package/gulp-ruby-sass) to do the work instead, which means the CSS is built to an intermediate directory and then passed through Webpack.
 
 - LiveReload requires the LiveReload browser extension to work.
-
-- 
