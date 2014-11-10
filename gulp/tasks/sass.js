@@ -2,7 +2,6 @@ var gulp = require('gulp');
 var gulpif = require('gulp-if');
 var livereload = require('gulp-livereload');
 var rubySass = require('gulp-ruby-sass');
-
 var handleErrors = require('../util/handleErrors');
 
 var config = require('../config').sass;

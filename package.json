@@ -1,33 +1,33 @@
 {
-  "name": "static",
-  "version": "0.5.0",
-  "private": true,
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/vaguity/static.git"
-  },
-  "devDependencies": {
-    "css-loader": "*",
-    "del": "*",
-    "exports-loader": "*",
-    "gulp": "*",
-    "gulp-if": "*",
-    "gulp-livereload": "*",
-    "gulp-notify": "*",
-    "gulp-rename": "*",
-    "gulp-ruby-sass": "*",
-    "gulp-sourcemaps": "*",
-    "gulp-streamify": "*",
-    "gulp-uglify": "*",
-    "gulp-util": "*",
-    "gulp-webpack": "^1.0.0",
-    "imports-loader": "*",
-    "jquery": "*",
-    "main-bower-files": "*",
-    "require-dir": "*",
-    "style-loader": "*",
-    "vinyl-buffer": "*",
-    "vinyl-source-stream": "*",
-    "webpack": "*"
-  }
+	"name": "static",
+	"version": "0.5.0",
+	"private": true,
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/vaguity/static.git"
+	},
+	"devDependencies": {
+		"css-loader": "^0.9.0",
+		"del": "^0.1.3",
+		"exports-loader": "^0.6.2",
+		"gulp": "^3.8.10",
+		"gulp-if": "^1.2.5",
+		"gulp-livereload": "^2.1.1",
+		"gulp-notify": "^2.0.1",
+		"gulp-rename": "^1.2.0",
+		"gulp-ruby-sass": "^0.7.1",
+		"gulp-sourcemaps": "^1.2.8",
+		"gulp-streamify": "0.0.5",
+		"gulp-uglify": "^1.0.1",
+		"gulp-util": "^3.0.1",
+		"gulp-webpack": "^1.0.0",
+		"imports-loader": "^0.6.3",
+		"jquery": "^2.1.1",
+		"main-bower-files": "^2.4.0",
+		"require-dir": "^0.1.0",
+		"style-loader": "^0.8.2",
+		"vinyl-buffer": "^1.0.0",
+		"vinyl-source-stream": "^1.0.0",
+		"webpack": "^1.4.13"
+	}
 }

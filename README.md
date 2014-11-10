@@ -17,7 +17,7 @@ This project:
 
 ## Dependencies
 
-You'll need npm and a global install of gulp. You'll also need Ruby and a global install of sass (`gem install sass`).
+You'll need npm and a global install of gulp. You'll also need Ruby and a global install of Sass (`gem install sass`).
 
 
 ## Installation
@@ -31,52 +31,61 @@ This installs all the Node modules and Bower components from `package.json` and 
 
 `gulp rebuild`
 
-The rebuild task will pull process the Bower dependencies listed with the parameters supplied in `gulp/config.js`.
+The rebuild task will process the Bower dependencies listed with the parameters supplied in `gulp/config.js`.
 
 
 ## Configuration
 
-The `gulp/config.js` file sets up the project directories and how dependencies are managed.
+### config.js
 
-### dist, src
+packageType  
+Specifies where the main Bower files of a package should go, used by config.bower.dest
 
-The `dist` and `src` variables set the project's development and production directories.
+config.sass  
+Used by `/tasks/sass.js` and `/tasks/watch.js`; defines src and intermediate dest for Sass files for watch and build purposes
 
-### packageType
+config.js  
+Used by `/tasks/watch.js`; defines js files for watch purposes
 
-Defines where a package type should go in the source directory. For example, Sass partials can be placed so they're available in a particular subdirectory. New packageTypes can be added and used in the Bower configuration.
+config.bower  
+Used by `/tasks/dependencies.js`; determines where main Bower files get moved for each Bower package. Main bower files are usually specified by a package's `bower.json` in the "main" field.  
+.name: package name  
+.rename: filename to rename  
+.dest: intermediate destination, as specified in the packageType object  
+.path: specifies the path of the main Bower files within the Bower package
 
-### config.sass
 
-Sets the source and destination directories for Sass.
+### webpack.config.js
 
-### config.bower
-
-`.src` sets the directory where Bower components are copied for use by the dependency tasks.
-
-`.packages` defines the type of package each Bower package is, and any path traversal that the processor must use to get to the main files. Main files are defined in the Bower component's `bower.json` under `main` or in the project's `bower.json` under `overrides`. See the [main-bower-files](https://www.npmjs.org/package/main-bower-files) package for details.
-
-### config.browserify
-
-Defines the Browserify bundles by their source, destination and filename.
-
+Specifies [Webpack configuration](http://webpack.github.io/docs/configuration.html). Input, output, and UglifyJS options are specified here. jQuery is also loaded here since it can be handled via the [ProvidePlugin](http://webpack.github.io/docs/list-of-plugins.html#provideplugin) plugin.
 
 ## Usage
 
 `gulp`  
-Runs `build` and `watch`
+Runs `watch`
 
-`gulp build`  
-Processes Browserify bundles and Sass
+`gulp watch`
+Runs `build` and watches Sass and JS files
 
-`gulp watch`  
-Watches for changes to Sass files and any source files of Browserify packages
+`gulp build` / `gulp webpack`  
+Builds Sass and JS through Webpack
 
-`gulp rebuild`  
+`gulp rebuild` / `gulp dependencies`  
 Processes all dependencies as defined by `config.bower`
-
-`gulp browserify`  
-Processes Browserify bundles as defined by `config.browserify`
 
 `gulp sass`  
 Processes Sass files
+
+`gulp deploy` / `gulp compress`  
+Runs `build` with production flags for minification and concatenation
+
+
+## Notes
+
+- Front-end libraries loaded by Webpack need to be added as development dependencies to Bower or npm, then managed in `/gulp/config.js`, `/gulp/webpack.config.js`, and `/src/entry.js` or some combination of the three. This is currently somewhat byzantine because [there isn't an ideal workflow yet](http://blog.npmjs.org/post/101775448305/npm-and-front-end-packaging).
+
+- The Webpack [sass-loader](https://www.npmjs.org/package/sass-loader) is based on node-sass, which is based on libsass, which doesn't offer full support for all Sass features. Right now, this means that Susy breaks. Currently relying on [gulp-ruby-sass](https://www.npmjs.org/package/gulp-ruby-sass) to do the work instead, which means the CSS is built to an intermediate directory and then passed through Webpack.
+
+- LiveReload requires the LiveReload browser extension to work.
+
+- 
