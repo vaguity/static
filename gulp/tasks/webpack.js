@@ -5,18 +5,23 @@ var gutil = require('gulp-util');
 var gulpWebpack = require('gulp-webpack');
 
 var webpack = require('webpack');
+var config = require('../config');
 
 
 gulp.task('webpack', ['sass'], function() {
 
+	if (config.buildMethod !== 'webpack') {
+		return;
+	}
+
 	global.isProduction = typeof global.isProduction !== 'undefined' ? global.isProduction : undefined;
 
-	var config = require('../webpack.config.js');
+	var webpackConfig = require('../webpack.config.js');
 
 	var watchCheck = typeof isWatching !== 'undefined' ? true : false;
 
-	return gulp.src(config.entry)
-		.pipe(gulpWebpack(config, webpack))
-		.pipe(gulp.dest(config.output.path))
+	return gulp.src(webpackConfig.entry)
+		.pipe(gulpWebpack(webpackConfig, webpack))
+		.pipe(gulp.dest(webpackConfig.output.path))
 		.pipe(gulpif(watchCheck, livereload()));
 });
