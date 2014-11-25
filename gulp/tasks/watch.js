@@ -12,6 +12,6 @@ gulp.task('watch:build', ['watch:set', 'build']);
 
 gulp.task('watch', ['watch:set', 'watch:build'], function() {
 	livereload.listen();
-	gulp.watch(config.sass.src, ['webpack']);
-	gulp.watch(config.js.src, ['webpack']);
+	gulp.watch(config.sass.src, ['build']);
+	gulp.watch(config.js.src, ['build']);
 });
