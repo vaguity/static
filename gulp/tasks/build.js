@@ -37,10 +37,10 @@ gulp.task('build', ['sass'], function() {
 			.pipe(gulp.dest(config.sass.dist));
 
 		var scripts = gulp.src(config.js.src)
-			.pipe(sourcemaps.init())
+			// .pipe(sourcemaps.init())
 			.pipe(uglify())
 			.pipe(rename({ suffix: '.min' }))
-			.pipe(sourcemaps.write())
+			// .pipe(sourcemaps.write())
 			.pipe(gulp.dest(config.js.dist));
 
 		var reload = gulp.src('')
