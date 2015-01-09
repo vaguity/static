@@ -21,21 +21,41 @@ gulp.task('process:dependencies', ['rebuild:dependencies'], function() {
 
 	var processDependency = function(dependency) {
 
-		var dependencyRenameCheck = typeof dependency.rename !== 'undefined' ? true : false;
-		var dependencySource = config.src + '/' + dependency.name;
+		var depRenameCheck = typeof dependency.rename !== 'undefined' ? true : false;
+
+		var depSource = config.src + '/' + dependency.name;
 
 		if (typeof dependency.path !== 'undefined') {
-			dependencySource += dependency.path;
-		}
-		if (typeof components.overrides[dependency.name] !== 'undefined') {
-			dependencySource += '/' + components.overrides[dependency.name].main;
-		}
-		else {
-			dependencySource += '/**';
+			depSource = depSource + dependency.path;
 		}
 
-		return gulp.src(dependencySource)
-			.pipe(gulpif(dependencyRenameCheck, rename(dependency.rename)))
+		if (typeof components.overrides[dependency.name] !== 'undefined') {
+			if (Array.isArray(components.overrides[dependency.name].main)) {
+				var depMainFiles = components.overrides[dependency.name].main;
+				var depMainFilesLength = depMainFiles.length;
+				var depSources = [];
+				var depStreams = [];
+				for (var i = 0; i < depMainFilesLength; i++) {
+					var depSourcesLength = depSources.push(depSource + '/' + depMainFiles[i]);
+				}
+				for (var i = 0; i < depSourcesLength; i++) {
+					var t = depStreams.push(gulp.src(depSources[i])
+						.on('error', handleErrors)
+						.pipe(gulp.dest(dependency.dest[i]))
+					);
+				}
+				return orderedMergeStream(depStreams);
+			}
+			else {
+				depSource += '/' + components.overrides[dependency.name].main;
+			}
+		}
+		else {
+			depSource += '/**';
+		}
+
+		return gulp.src(depSource)
+			.pipe(gulpif(depRenameCheck, rename(dependency.rename)))
 			.on('error', handleErrors)
 			.pipe(gulp.dest(dependency.dest));
 	}
